@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:12（北京时间）。检查点：CP-016。
+更新时间：2026-10-04 21:15（北京时间）。检查点：CP-017。
 
 ## 最新状态（优先于下方历史记录）
 
@@ -184,3 +184,15 @@ git -c http.proxy=http://127.0.0.1:7897 push -u origin main
 ## CP-016：浏览器错误仍复现，等待终端堆栈
 
 用户截图 Snipaste_2026-10-04_21-11-44.png 显示 localhost:3000 返回 {"err":"getRenderQueue is not a function"}。这是浏览器页面，不含终端详细堆栈，不能从此确认 verbose 命令执行情况或根因。下一步请用户切换回运行 Remotion 的 CMD 黑色窗口，截取最新报错及其下方 at 开头的调用堆栈；保持服务运行，不再次启动。源码和进度已在 GitHub，预览故障未修复。
+
+## CP-017：发布包中发现空 queue.js，待本地确认
+
+最新终端截图确认 verbose 启动已执行，Rspack 构建完成，主页报 getRenderQueue is not a function，但日志未打印调用堆栈。助手读取远端 remotion.config.ts 为模板配置（Rspack true、jpeg、overwrite）。从 registry.npmjs.org 下载 @remotion/cli 4.0.531 官方发布 tgz 并解压，发现 dist/studio.js:221 将 queue_1.getRenderQueue 传入 Studio，dist/render-queue/queue.d.ts 声明此函数，但对应 queue.js 为空。@remotion/studio-server 4.0.531 的 dist/routes.js:151 调用 getRenderQueue()。这与错误吻合，需确认 Windows 安装文件是否同样为空，尚未实施修复。
+
+下一步用户 Ctrl+C 停止服务并回到提示符后运行：
+
+```bat
+node -e "const fs=require(\x27fs\x27);const p=\x27node_modules/@remotion/cli/dist/render-queue/queue.js\x27;console.log(p);console.log(\x27bytes =\x27,fs.statSync(p).size)"
+```
+
+如果证实0字节，则应进一步核实可用的完整版本或发布包修复方案，不重复要求版本一致性检查，不把空函数替代当完整修复。源码备份仍有效。
