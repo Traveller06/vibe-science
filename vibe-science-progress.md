@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:16（北京时间）。检查点：CP-018。
+更新时间：2026-10-04 21:22（北京时间）。检查点：CP-019。
 
 ## 最新状态（优先于下方历史记录）
 
@@ -210,3 +210,7 @@ npx remotion versions
 ```
 
 保持Clash Verge运行。命令会修改package.json与package-lock.json，尚未执行验证。后续版本检查通过后启动Studio验证主页和队列功能，再将修复后的两个文件与进度提交备份；推送前拉取远端文档更新。不要直接修改node_modules为空函数，不重复安装有空文件的4.0.531。
+
+## CP-019：4.0.530版本一致性通过，待启动验证
+
+截图 Snipaste_2026-10-04_21-21-41.png 确认 npx remotion versions 列出的 Remotion 包均为4.0.530，输出 All packages have the correct version，zod4.5.4，Node24.21.0。安装输出有10项high severity漏洞提示，详情未知；esbuild0.28.1安装脚本仍提示未批准。不能据版本一致性声称预览已修复。下一步运行 npm run dev，打开 localhost:3000 刷新，提供页面截图；若仍出错同时提供终端。预览验证后检查npm audit具体依赖与影响，勿直接运行npm audit fix --force。回退后的package.json和package-lock.json尚未提交远端；确认功能后应备份，并先同步远端进度文档。
