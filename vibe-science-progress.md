@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:15（北京时间）。检查点：CP-017。
+更新时间：2026-10-04 21:16（北京时间）。检查点：CP-018。
 
 ## 最新状态（优先于下方历史记录）
 
@@ -196,3 +196,17 @@ node -e "const fs=require(\x27fs\x27);const p=\x27node_modules/@remotion/cli/dis
 ```
 
 如果证实0字节，则应进一步核实可用的完整版本或发布包修复方案，不重复要求版本一致性检查，不把空函数替代当完整修复。源码备份仍有效。
+
+## CP-018：本地空文件确认，准备统一回退4.0.530
+
+用户截图确认 queue.js 为 bytes = 0，服务已停止并回到提示符。停止后多输入的 y 被 CMD 当命令报错，不影响文件检查。助手另从 npm registry 下载 @remotion/cli 4.0.530 tgz，确认对应 queue.js 为7716字节，定义并导出 getRenderQueue；尚未声称整个版本已通过本地运行测试。已阅读 remotion-upgrade 技能关于依赖版本一致性原则，本次为定向回退而非无目标升级。
+
+源码已在远端84cbfd9备份；下一步由用户执行以下命令，前一条失败则停止：
+
+```bat
+npm install --save-exact remotion@4.0.530 @remotion/cli@4.0.530 @remotion/zod-types@4.0.530 --proxy=http://127.0.0.1:7897
+npm install --save-dev --save-exact @remotion/eslint-config-flat@4.0.530 --proxy=http://127.0.0.1:7897
+npx remotion versions
+```
+
+保持Clash Verge运行。命令会修改package.json与package-lock.json，尚未执行验证。后续版本检查通过后启动Studio验证主页和队列功能，再将修复后的两个文件与进度提交备份；推送前拉取远端文档更新。不要直接修改node_modules为空函数，不重复安装有空文件的4.0.531。
