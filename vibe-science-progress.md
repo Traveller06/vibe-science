@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:22（北京时间）。检查点：CP-019。
+更新时间：2026-10-04 21:24（北京时间）。检查点：CP-020。
 
 ## 最新状态（优先于下方历史记录）
 
@@ -214,3 +214,7 @@ npx remotion versions
 ## CP-019：4.0.530版本一致性通过，待启动验证
 
 截图 Snipaste_2026-10-04_21-21-41.png 确认 npx remotion versions 列出的 Remotion 包均为4.0.530，输出 All packages have the correct version，zod4.5.4，Node24.21.0。安装输出有10项high severity漏洞提示，详情未知；esbuild0.28.1安装脚本仍提示未批准。不能据版本一致性声称预览已修复。下一步运行 npm run dev，打开 localhost:3000 刷新，提供页面截图；若仍出错同时提供终端。预览验证后检查npm audit具体依赖与影响，勿直接运行npm audit fix --force。回退后的package.json和package-lock.json尚未提交远端；确认功能后应备份，并先同步远端进度文档。
+
+## CP-020：用户确认优先续接保障后继续vibe搭建
+
+用户询问当前工作和流程保存能力，明确要求具备续接保存后继续vibe搭建。已说明：GitHub保存已提交源码与检查点，可以中断后恢复；不是运行内存快照，也未配置电脑后台自动推送。当前4.0.530版本一致性已验证，预览结果未知，依赖回退文件未上传。下一步先在新CMD窗口进入工程，git add package.json package-lock.json，git commit -m "Pin Remotion to 4.0.530 to restore render queue"，通过7897代理git pull --no-rebase --no-edit origin main后git push；每条失败则停止。之后核验远端依赖并验证预览，继续《信息论｜惊奇之学》视频内容搭建；完整旁白仍需收齐。等待用户推送期间不继续改动远端以避免非快进拒绝。
