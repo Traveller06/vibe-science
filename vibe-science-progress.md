@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 20:54（北京时间）。检查点：CP-011。
+更新时间：2026-10-04 20:58（北京时间）。检查点：CP-012。
 
 ## 必须遵守的续接规则
 
@@ -144,3 +144,13 @@ git log -1 --oneline
 ## CP-011：本地首次提交已产生文件创建输出
 
 截图 Snipaste_2026-10-04_20-54-40.png 显示提交后大量 create mode 100644 输出，包括模板源码、配置、package-lock.json、skills-lock.json 及 .agents 技能，并已回到 CMD 提示符，支持首次提交成功。git log -1 --oneline 已输入但尚未回车，提交哈希仍待确认。下一步先按回车，随后执行 git remote add origin https://github.com/Traveller06/vibe-science.git 和 git fetch origin，等待远端获取结果；若出现 GitHub 登录则由用户完成。此阶段尚不推送。之后需合并 origin/main 的进度记录，处理本地 master 与远端 main 分支关系，再推送并验证源码备份。GitHub 现有内容仍只有续接记录。
+
+## CP-012：本地提交已验证，fetch 遇到连接重置
+
+截图确认本地 master 提交 08c64e2（Backup initial Remotion project）。git remote add origin https://github.com/Traveller06/vibe-science.git 执行无报错。git fetch origin 失败：Recv failure: Connection was reset，已返回提示符。尚未取得远端记录，未合并或推送。下一步确认 Clash Verge 正在运行，使用之前验证过的混合代理端口 7897，仅针对本次命令重试：
+
+```bat
+git -c http.proxy=http://127.0.0.1:7897 fetch origin
+```
+
+不要重复添加 origin，不修改全局代理或关闭 TLS 验证。等待重试结果；如果出现登录页面，由用户登录 Traveller06。源码 GitHub 备份仍未完成。
