@@ -1,6 +1,10 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:02（北京时间）。检查点：CP-014。
+更新时间：2026-10-04 21:29（北京时间）。检查点：CP-022。
+
+## 最新状态（优先于下方历史记录）
+
+工程源码和续接记录已成功上传 GitHub 私有仓库 Traveller06/vibe-science，main 分支推送提交 84cbfd9。助手已从远端读回 package.json、src/Root.tsx 和本记录验证。Windows 工程路径不变，main 已跟踪 origin/main。当前恢复重点是 Remotion Studio 的 getRenderQueue 错误。以下早期“源码未上传”描述属于历史状态。
 
 ## 必须遵守的续接规则
 
@@ -170,3 +174,55 @@ git -c http.proxy=http://127.0.0.1:7897 push -u origin main
 ```
 
 每条成功后再执行下一条；如有 error、fatal 或 CONFLICT，停止并发输出。以上步骤尚未收到执行结果，源码远端备份未验证。等待推送期间助手不再修改远端，避免造成非快进拒绝；下次先核验推送结果与远端源码，再更新进度。
+
+## CP-015：源码 GitHub 备份已验证，恢复预览故障诊断
+
+用户截图确认合并成功并推送 82f1102..84cbfd9 main -> main，main 跟踪 origin/main，终端已返回提示符。助手独立读回远端 package.json、src/Root.tsx 和续接记录，确认源码已存在。package.json 的 Remotion 直接依赖均为4.0.531，源码仍为 HelloWorld 模板。尚未修复预览故障或制作正式视频。
+
+下一步在现有 CMD 工程目录执行 npx remotion studio --log=verbose，打开 http://localhost:3000 并刷新一次，提供终端底部完整错误堆栈。命令尚未收到结果，不盲目重装或升级。助手此次更新进度使远端领先本地一个文档提交；下一次本地提交/推送前需拉取最新进度。每次后续工作继续保存源码变更与检查点，备份不等于后台自动保存运行内存。
+
+## CP-016：浏览器错误仍复现，等待终端堆栈
+
+用户截图 Snipaste_2026-10-04_21-11-44.png 显示 localhost:3000 返回 {"err":"getRenderQueue is not a function"}。这是浏览器页面，不含终端详细堆栈，不能从此确认 verbose 命令执行情况或根因。下一步请用户切换回运行 Remotion 的 CMD 黑色窗口，截取最新报错及其下方 at 开头的调用堆栈；保持服务运行，不再次启动。源码和进度已在 GitHub，预览故障未修复。
+
+## CP-017：发布包中发现空 queue.js，待本地确认
+
+最新终端截图确认 verbose 启动已执行，Rspack 构建完成，主页报 getRenderQueue is not a function，但日志未打印调用堆栈。助手读取远端 remotion.config.ts 为模板配置（Rspack true、jpeg、overwrite）。从 registry.npmjs.org 下载 @remotion/cli 4.0.531 官方发布 tgz 并解压，发现 dist/studio.js:221 将 queue_1.getRenderQueue 传入 Studio，dist/render-queue/queue.d.ts 声明此函数，但对应 queue.js 为空。@remotion/studio-server 4.0.531 的 dist/routes.js:151 调用 getRenderQueue()。这与错误吻合，需确认 Windows 安装文件是否同样为空，尚未实施修复。
+
+下一步用户 Ctrl+C 停止服务并回到提示符后运行：
+
+```bat
+node -e "const fs=require(\x27fs\x27);const p=\x27node_modules/@remotion/cli/dist/render-queue/queue.js\x27;console.log(p);console.log(\x27bytes =\x27,fs.statSync(p).size)"
+```
+
+如果证实0字节，则应进一步核实可用的完整版本或发布包修复方案，不重复要求版本一致性检查，不把空函数替代当完整修复。源码备份仍有效。
+
+## CP-018：本地空文件确认，准备统一回退4.0.530
+
+用户截图确认 queue.js 为 bytes = 0，服务已停止并回到提示符。停止后多输入的 y 被 CMD 当命令报错，不影响文件检查。助手另从 npm registry 下载 @remotion/cli 4.0.530 tgz，确认对应 queue.js 为7716字节，定义并导出 getRenderQueue；尚未声称整个版本已通过本地运行测试。已阅读 remotion-upgrade 技能关于依赖版本一致性原则，本次为定向回退而非无目标升级。
+
+源码已在远端84cbfd9备份；下一步由用户执行以下命令，前一条失败则停止：
+
+```bat
+npm install --save-exact remotion@4.0.530 @remotion/cli@4.0.530 @remotion/zod-types@4.0.530 --proxy=http://127.0.0.1:7897
+npm install --save-dev --save-exact @remotion/eslint-config-flat@4.0.530 --proxy=http://127.0.0.1:7897
+npx remotion versions
+```
+
+保持Clash Verge运行。命令会修改package.json与package-lock.json，尚未执行验证。后续版本检查通过后启动Studio验证主页和队列功能，再将修复后的两个文件与进度提交备份；推送前拉取远端文档更新。不要直接修改node_modules为空函数，不重复安装有空文件的4.0.531。
+
+## CP-019：4.0.530版本一致性通过，待启动验证
+
+截图 Snipaste_2026-10-04_21-21-41.png 确认 npx remotion versions 列出的 Remotion 包均为4.0.530，输出 All packages have the correct version，zod4.5.4，Node24.21.0。安装输出有10项high severity漏洞提示，详情未知；esbuild0.28.1安装脚本仍提示未批准。不能据版本一致性声称预览已修复。下一步运行 npm run dev，打开 localhost:3000 刷新，提供页面截图；若仍出错同时提供终端。预览验证后检查npm audit具体依赖与影响，勿直接运行npm audit fix --force。回退后的package.json和package-lock.json尚未提交远端；确认功能后应备份，并先同步远端进度文档。
+
+## CP-020：用户确认优先续接保障后继续vibe搭建
+
+用户询问当前工作和流程保存能力，明确要求具备续接保存后继续vibe搭建。已说明：GitHub保存已提交源码与检查点，可以中断后恢复；不是运行内存快照，也未配置电脑后台自动推送。当前4.0.530版本一致性已验证，预览结果未知，依赖回退文件未上传。下一步先在新CMD窗口进入工程，git add package.json package-lock.json，git commit -m "Pin Remotion to 4.0.530 to restore render queue"，通过7897代理git pull --no-rebase --no-edit origin main后git push；每条失败则停止。之后核验远端依赖并验证预览，继续《信息论｜惊奇之学》视频内容搭建；完整旁白仍需收齐。等待用户推送期间不继续改动远端以避免非快进拒绝。
+
+## CP-021：Studio 页面恢复，待保存回退依赖并制作内容
+
+截图显示 localhost:3000/Logo 已打开完整 Remotion Studio，作品列表包含 Logo、Title、HelloWorld，时间线和属性面板正常显示。确认此前阻止页面加载的 getRenderQueue 错误已消除；未验证播放或导出。当前停在Logo第0帧，画布为透明棋盘格，不据此判定新故障。助手读取GitHub package.json仍为4.0.531，回退文件尚未在远端出现。请用户按CP-020命令提交依赖、pull最新记录并push，完成后核验远端4.0.530。随后进入《信息论｜惊奇之学》内容制作，完整旁白仍待收齐。此更新后等待用户推送，避免再产生文档提交竞态。
+
+## CP-022：命令误输入正在运行的预览服务窗口
+
+用户称逐行复制都出现同样提示；截图显示 npm run dev 仍占用窗口，服务已构建成功，重复输出 Opened http://localhost:3000 in browser，未显示任何git命令执行或命令提示符。因此不能认定备份命令已执行。下一步保留预览窗口，通过Win+R输入cmd打开新的CMD，进入工程后执行CP-020的git add、commit、pull、push命令；新窗口必须出现C:\\Users\\Lenovo\\vibe-science>提示符。回退依赖远端备份仍待确认。
