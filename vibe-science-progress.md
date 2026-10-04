@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 20:48（北京时间）。检查点：CP-008。
+更新时间：2026-10-04 20:50（北京时间）。检查点：CP-009。
 
 ## 必须遵守的续接规则
 
@@ -122,3 +122,7 @@ type .gitignore
 ## CP-008：确认本地尚无提交及远端
 
 GitHub CP-007 记录已提交成功并读回验证，提交 539c3c3ced9f5ca4c30aac61aeb950779767a68f。用户最新 CMD 截图确认：当前分支 master，No commits yet；模板源文件已暂存；.agents/、package-lock.json、skills-lock.json 未跟踪；git remote -v 无输出；git log 报当前分支尚无提交，符合当前状态。type .gitignore 已输入但截图未显示执行结果，需按回车后查看。下一步同时读取 git config user.name 与 git config user.email，以定位初始提交失败原因；没有输出仅表示配置未查到，不应提前断言。当前源码依然仅在 Windows 本地，尚未上传 GitHub。继续备份前需确认忽略规则和提交身份。
+
+## CP-009：已确认忽略规则，提交身份仍待检查
+
+截图 Snipaste_2026-10-04_20-49-41(1).png 显示 type .gitignore 的结果：node_modules、dist、.DS_Store、.env、out 已忽略。截图未出现 git config user.name 或 git config user.email 命令，因此不能认定已执行或配置为空。下一步只请用户依次执行这两条只读命令并提供输出，之后继续首次本地提交与远端合并上传。源码 GitHub 备份仍未完成。
