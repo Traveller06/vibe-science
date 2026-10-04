@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 20:52（北京时间）。检查点：CP-010。
+更新时间：2026-10-04 20:54（北京时间）。检查点：CP-011。
 
 ## 必须遵守的续接规则
 
@@ -140,3 +140,7 @@ git log -1 --oneline
 ```
 
 此次只是本地 Git 快照，之后仍需连接远端、整合 GitHub 已有续接记录并推送验证；不得把本地提交等同于 GitHub 源码备份完成。
+
+## CP-011：本地首次提交已产生文件创建输出
+
+截图 Snipaste_2026-10-04_20-54-40.png 显示提交后大量 create mode 100644 输出，包括模板源码、配置、package-lock.json、skills-lock.json 及 .agents 技能，并已回到 CMD 提示符，支持首次提交成功。git log -1 --oneline 已输入但尚未回车，提交哈希仍待确认。下一步先按回车，随后执行 git remote add origin https://github.com/Traveller06/vibe-science.git 和 git fetch origin，等待远端获取结果；若出现 GitHub 登录则由用户完成。此阶段尚不推送。之后需合并 origin/main 的进度记录，处理本地 master 与远端 main 分支关系，再推送并验证源码备份。GitHub 现有内容仍只有续接记录。
