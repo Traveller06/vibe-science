@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 20:50（北京时间）。检查点：CP-009。
+更新时间：2026-10-04 20:52（北京时间）。检查点：CP-010。
 
 ## 必须遵守的续接规则
 
@@ -126,3 +126,17 @@ GitHub CP-007 记录已提交成功并读回验证，提交 539c3c3ced9f5ca4c30a
 ## CP-009：已确认忽略规则，提交身份仍待检查
 
 截图 Snipaste_2026-10-04_20-49-41(1).png 显示 type .gitignore 的结果：node_modules、dist、.DS_Store、.env、out 已忽略。截图未出现 git config user.name 或 git config user.email 命令，因此不能认定已执行或配置为空。下一步只请用户依次执行这两条只读命令并提供输出，之后继续首次本地提交与远端合并上传。源码 GitHub 备份仍未完成。
+
+## CP-010：身份配置为空，准备首次本地提交
+
+截图确认 git config user.name 和 git config user.email 均已执行且没有输出。提交身份尚未配置，可能解释初始提交失败，但当时详细报错未取得。下一步在工程目录设置仓库级身份 Traveller06，使用依据已验证 GitHub 用户 ID 317544432 与登录名组成的隐私邮箱 317544432+Traveller06@users.noreply.github.com；加入已观察到的 .agents、package-lock.json、skills-lock.json，与已暂存模板文件一同创建本地提交，随后 git log -1 --oneline 验证。命令如下，尚未执行验证：
+
+```bat
+git config --local user.name "Traveller06"
+git config --local user.email "317544432+Traveller06@users.noreply.github.com"
+git add .agents package-lock.json skills-lock.json
+git commit -m "Backup initial Remotion project"
+git log -1 --oneline
+```
+
+此次只是本地 Git 快照，之后仍需连接远端、整合 GitHub 已有续接记录并推送验证；不得把本地提交等同于 GitHub 源码备份完成。
