@@ -1,6 +1,6 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:01（北京时间）。检查点：CP-013。
+更新时间：2026-10-04 21:02（北京时间）。检查点：CP-014。
 
 ## 必须遵守的续接规则
 
@@ -158,3 +158,15 @@ git -c http.proxy=http://127.0.0.1:7897 fetch origin
 ## CP-013：用户已完成登录，等待 fetch 输出
 
 用户报告“已登录”。尚未收到代理 fetch 的最终终端输出，不能据登录成功推断 fetch 成功。下一步请用户返回原 CMD 窗口，提供底部输出截图，确认是否出现 main -> origin/main 并返回提示符。若仍在执行，不重复运行命令。源代码尚未验证上传 GitHub。
+
+## CP-014：代理 fetch 成功，待合并并推送源码
+
+截图确认使用 http://127.0.0.1:7897 代理且浏览器认证后，fetch 成功，出现 main -> origin/main 并返回提示符。本地 master 提交仍为 08c64e2。下一步将当前分支重命名 main，重新拉取最新远端记录并合并两段独立历史，随后普通推送，不强制覆盖。因本次检查点更新在前次 fetch 之后，必须再次 pull 获取最新记录。
+
+```bat
+git branch -m main
+git -c http.proxy=http://127.0.0.1:7897 pull --no-rebase --allow-unrelated-histories --no-edit origin main
+git -c http.proxy=http://127.0.0.1:7897 push -u origin main
+```
+
+每条成功后再执行下一条；如有 error、fatal 或 CONFLICT，停止并发输出。以上步骤尚未收到执行结果，源码远端备份未验证。等待推送期间助手不再修改远端，避免造成非快进拒绝；下次先核验推送结果与远端源码，再更新进度。
