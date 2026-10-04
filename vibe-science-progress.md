@@ -1,0 +1,172 @@
+# vibe知识科普：项目续接记录
+
+更新时间：2026-10-04 21:02（北京时间）。检查点：CP-014。
+
+## 必须遵守的续接规则
+
+用户要求：每次执行时保存当前进度，避免断网、额度耗尽或会话终止后无法继续。后续助手应在操作前记录计划，在取得结果后更新本文件；未收到执行结果的步骤必须标为“待验证”，不能当作完成。更新同一文件并保留历史版本。每次代码改动前先备份，验证后再记录。不要重新初始化已存在的工程。
+
+本文件保存任务状态与恢复方法，不是运行中进程的内存快照。用户 Windows 工程目前未上传，助手不能直接访问或备份用户 C 盘。会话中断不会自动删除本地工程，但尚无已验证的独立工程备份。后续需安排本地快照备份并确认成功。
+
+## 目标和工作方式
+
+- 项目：vibe知识科普，制作《信息论｜惊奇之学》视频。
+- 用户希望按步骤学习；每次给少量明确操作，用户发截图后继续。
+- 当前阶段：Windows 上搭建 Remotion 并修复预览启动错误；尚未开始正式视频内容制作。
+- 先前指导链接：https://chatgpt.com/s/t_6abd3aaf86fc81918392cdbdf6acdaa0 。本文件未重新读取其内容，不能编造其中后续要求。
+- 完整旁白尚未收齐，已知开头为“床前明月__”，现有文案在天线鸽子故事附近截断。
+
+## 已确认环境
+
+- Windows；用户目录 C:\Users\Lenovo。
+- 工程位置 C:\Users\Lenovo\vibe-science。
+- Node.js v24.21.0；npm 11.19.0。
+- Remotion 所有被检查到的组件均为 4.0.531；zod 4.5.4。
+- 使用 CMD 命令语法。一个截图标题曾显示 PowerShell，但提示符仍为 CMD 格式；若换终端需确认语法。
+- Clash Verge 系统代理已开启，规则模式；本地代理端口 7897。
+- 浏览器可以打开 GitHub；curl 显式使用 http://127.0.0.1:7897 已收到 GitHub 响应。
+
+## 已完成且有截图依据
+
+1. Node.js/npm 安装与版本检查。
+2. 创建工程：npx create-video@latest；Hello World；目录 vibe-science；TailwindCSS No；Add agent skills Yes。
+3. 初始模板下载曾报 ECONNRESET 和 connect ETIMEDOUT；设置代理后模板复制成功。
+4. Git 初始提交失败，exit code 128；程序提示 Project has been created nonetheless。具体原因未查明，不能认定已完成 Git 提交或备份。
+5. 安装 remotion-dev/skills 的 12 项技能；通用助手列表包括 Codex；Project 范围；以复制方式安装到工程 .agents/skills；find-skills 选 No。截图确认 Installed 12 skills。
+6. cd vibe-science 后运行 npm i：added 356 packages，audited 357 packages，found 0 vulnerabilities。提示 eslint@9.39.5 deprecated，以及 esbuild@0.28.1 postinstall 未获 allowScripts 覆盖。未执行脚本批准。
+7. npm run dev 执行 remotion studio：Server ready，Local http://localhost:3000，Built in 2434ms。
+8. 浏览器访问主页失败，显示 {"err":"getRenderQueue is not a function"}。终端显示 Error while calling / TypeError: getRenderQueue is not a function。
+9. 用户按 Ctrl+C 四次后已回到工程提示符，预览命令已停止。
+10. npx remotion versions 检查通过：All packages have the correct version。排除了检测到的版本不一致，未证明安装文件完整或该版本没有缺陷。
+
+## 当前阻塞及下一步
+
+阻塞：Remotion Studio 主页 getRenderQueue is not a function。尚未确定根因，也未修复；不要声称能预览或已经完成视频。
+
+上次已交给用户、但尚未收到执行结果的命令：
+
+```bat
+npx remotion studio --log=verbose
+```
+
+下一步：让用户运行该命令，浏览器打开后刷新一次，收集终端最新详细报错（长日志分图或复制文本）。先根据日志定位，不盲目重装 Node.js、删除工程、升级/降级或重复创建工程。用户当前是否已运行该命令未知。
+
+## 断点恢复
+
+新会话先读取本文件，再询问/查看当前终端输出，避免重复已完成步骤。如需重开 CMD：
+
+```bat
+cd /d C:\Users\Lenovo\vibe-science
+```
+
+需要联网且 Clash Verge 正在运行时，原来使用的当前窗口代理设置为：
+
+```bat
+set "HTTP_PROXY=http://127.0.0.1:7897"
+set "HTTPS_PROXY=http://127.0.0.1:7897"
+set "NODE_USE_ENV_PROXY=1"
+```
+
+这些 set 设置仅当前 CMD 及其子进程有效，关闭窗口后需重设。恢复时复制代码块里的英文直引号，不手工输入中文弯引号。无需再次运行 create-video 或再次安装技能。
+
+## 本地备份待办
+
+用户应将本记录下载到工程内；本地工程独立快照尚未执行/验证。下一次修改工程文件之前，先将工程源文件、package.json、package-lock.json、配置、public 素材及 .agents 技能保存到独立备份位置；可排除可重装的 node_modules。Git 初始提交问题仍待处理，不可把失败提交当备份。若需要助手直接编辑，应上传相应源码，不能把聊天截图当作代码备份。
+
+## 最近证据
+
+- Snipaste_2026-10-01_01-17-12.png：服务启动与主页错误。
+- Snipaste_2026-10-01_01-19-18(1).png：Ctrl+C 后已返回提示符。
+- Snipaste_2026-10-01_01-20-52(1).png：完整版本检查通过。
+
+## 检查点历史
+
+- CP-001：建立续接记录；明确当前版本一致、预览错误未解决、详细日志待验证、本地工程备份待执行。
+
+## CP-002：开始配置 GitHub 备份
+
+用户明确希望将进度和工程保存到自己的 GitHub，已确认尚无仓库。当前优先事项：指导用户在 https://github.com/new 创建私有空仓库 vibe-science，不初始化 README、.gitignore 或 License。等待用户提供创建后的仓库链接或截图。尚未创建或推送任何 GitHub 文件，不可声称 GitHub 已有备份。之后先检查本地 git status、remote 和忽略规则，解决此前初始提交失败，排除 node_modules、密钥和不必要的大文件，再提交源码和本续接记录并验证远端提交。Remotion getRenderQueue 故障仍未解决，详细日志仍待反馈。每个后续完成并验证的阶段更新进度并提交；本地操作由用户执行时，只有收到成功输出才标记完成。
+
+## CP-003：GitHub 连接检查受阻
+
+用户提供仓库地址 https://github.com/Traveller06/vibe-science.git 并要求继续。2026-10-04 已通过 GitHub 连接确认当前账号为 Traveller06；读取 Traveller06/vibe-science 元数据返回 404 Not Found。不能据此断言仓库不存在，可能为私有仓库未授权或地址/状态变化。未向 GitHub 写入任何文件，源码及进度 GitHub 备份均未确认完成。下一步请用户在其浏览器打开该仓库并发页面截图，若能访问则检查连接对应 GitHub App 的仓库授权。不要绕过权限使用其他会话或凭据。Remotion 预览故障与详细日志待反馈状态保持不变。
+
+## CP-004：截图确认私有空仓库存在
+
+用户截图 Snipaste_2026-10-04_20-36-02.png 明确显示浏览器可以打开 Traveller06/vibe-science，仓库为私有，仍显示空仓库快速设置页面。之前连接返回404；现在优先检查 GitHub App 对此新仓库的授权。下一步让用户打开 https://github.com/settings/installations 并提供已安装应用列表截图，以确认与本次连接对应的应用；之后在对应 Configure 页面为 vibe-science 增加仓库访问权限，保留原有授权。尚未修改授权，未写入 GitHub 文件，源码备份未完成。
+
+## CP-005：定位连接应用
+
+截图 Snipaste_2026-10-04_20-37-20.png 显示已安装应用 ChatGPT Codex 连接器，右侧有“配置”按钮。下一步点击该按钮，查看 Repository access（仓库访问）区域并发截图；尚未确认 vibe-science 是否已在授权列表，不改动其他项目授权。GitHub 备份仍待完成。
+
+## CP-006：查看仓库访问选项
+
+截图 Snipaste_2026-10-04_20-41-04(1).png 已确认连接器配置页选择“仅选择存储库”，页面显示已选择1个存储库，但名称在截图下方不可见。下一步点击“选择存储库”下拉框，搜索并勾选 Traveller06/vibe-science，保留已有勾选，向下滚动点击 Save/保存。等待用户保存后的反馈再验证连接访问。尚未验证目标仓库授权生效，GitHub 备份未完成。
+
+## CP-007：GitHub 授权生效，开始保存续接记录
+
+截图显示 Traveller06/vibe-science 已在授权列表。GitHub 连接已成功读取仓库元数据，确认私有仓库、默认分支 main、有 push 权限。当前操作：将本续接记录首次提交到仓库并读回验证。此文件在 GitHub 上存在仅表示续接记录已保存，不代表 Windows 工程源码已备份。后续以 GitHub 中本文件为续接记录的维护位置。
+
+下一步请用户在 CMD 执行以下只读检查并提供输出：
+
+```bat
+cd /d C:\Users\Lenovo\vibe-science
+git status
+git remote -v
+git log -1 --oneline
+type .gitignore
+```
+
+根据结果处理初始提交失败、检查忽略规则及远端配置，然后将 Windows 工程与远端续接记录安全合并并推送，禁止强制覆盖远端或重复初始化工程。Remotion 故障仍未修复。
+
+## CP-008：确认本地尚无提交及远端
+
+GitHub CP-007 记录已提交成功并读回验证，提交 539c3c3ced9f5ca4c30aac61aeb950779767a68f。用户最新 CMD 截图确认：当前分支 master，No commits yet；模板源文件已暂存；.agents/、package-lock.json、skills-lock.json 未跟踪；git remote -v 无输出；git log 报当前分支尚无提交，符合当前状态。type .gitignore 已输入但截图未显示执行结果，需按回车后查看。下一步同时读取 git config user.name 与 git config user.email，以定位初始提交失败原因；没有输出仅表示配置未查到，不应提前断言。当前源码依然仅在 Windows 本地，尚未上传 GitHub。继续备份前需确认忽略规则和提交身份。
+
+## CP-009：已确认忽略规则，提交身份仍待检查
+
+截图 Snipaste_2026-10-04_20-49-41(1).png 显示 type .gitignore 的结果：node_modules、dist、.DS_Store、.env、out 已忽略。截图未出现 git config user.name 或 git config user.email 命令，因此不能认定已执行或配置为空。下一步只请用户依次执行这两条只读命令并提供输出，之后继续首次本地提交与远端合并上传。源码 GitHub 备份仍未完成。
+
+## CP-010：身份配置为空，准备首次本地提交
+
+截图确认 git config user.name 和 git config user.email 均已执行且没有输出。提交身份尚未配置，可能解释初始提交失败，但当时详细报错未取得。下一步在工程目录设置仓库级身份 Traveller06，使用依据已验证 GitHub 用户 ID 317544432 与登录名组成的隐私邮箱 317544432+Traveller06@users.noreply.github.com；加入已观察到的 .agents、package-lock.json、skills-lock.json，与已暂存模板文件一同创建本地提交，随后 git log -1 --oneline 验证。命令如下，尚未执行验证：
+
+```bat
+git config --local user.name "Traveller06"
+git config --local user.email "317544432+Traveller06@users.noreply.github.com"
+git add .agents package-lock.json skills-lock.json
+git commit -m "Backup initial Remotion project"
+git log -1 --oneline
+```
+
+此次只是本地 Git 快照，之后仍需连接远端、整合 GitHub 已有续接记录并推送验证；不得把本地提交等同于 GitHub 源码备份完成。
+
+## CP-011：本地首次提交已产生文件创建输出
+
+截图 Snipaste_2026-10-04_20-54-40.png 显示提交后大量 create mode 100644 输出，包括模板源码、配置、package-lock.json、skills-lock.json 及 .agents 技能，并已回到 CMD 提示符，支持首次提交成功。git log -1 --oneline 已输入但尚未回车，提交哈希仍待确认。下一步先按回车，随后执行 git remote add origin https://github.com/Traveller06/vibe-science.git 和 git fetch origin，等待远端获取结果；若出现 GitHub 登录则由用户完成。此阶段尚不推送。之后需合并 origin/main 的进度记录，处理本地 master 与远端 main 分支关系，再推送并验证源码备份。GitHub 现有内容仍只有续接记录。
+
+## CP-012：本地提交已验证，fetch 遇到连接重置
+
+截图确认本地 master 提交 08c64e2（Backup initial Remotion project）。git remote add origin https://github.com/Traveller06/vibe-science.git 执行无报错。git fetch origin 失败：Recv failure: Connection was reset，已返回提示符。尚未取得远端记录，未合并或推送。下一步确认 Clash Verge 正在运行，使用之前验证过的混合代理端口 7897，仅针对本次命令重试：
+
+```bat
+git -c http.proxy=http://127.0.0.1:7897 fetch origin
+```
+
+不要重复添加 origin，不修改全局代理或关闭 TLS 验证。等待重试结果；如果出现登录页面，由用户登录 Traveller06。源码 GitHub 备份仍未完成。
+
+## CP-013：用户已完成登录，等待 fetch 输出
+
+用户报告“已登录”。尚未收到代理 fetch 的最终终端输出，不能据登录成功推断 fetch 成功。下一步请用户返回原 CMD 窗口，提供底部输出截图，确认是否出现 main -> origin/main 并返回提示符。若仍在执行，不重复运行命令。源代码尚未验证上传 GitHub。
+
+## CP-014：代理 fetch 成功，待合并并推送源码
+
+截图确认使用 http://127.0.0.1:7897 代理且浏览器认证后，fetch 成功，出现 main -> origin/main 并返回提示符。本地 master 提交仍为 08c64e2。下一步将当前分支重命名 main，重新拉取最新远端记录并合并两段独立历史，随后普通推送，不强制覆盖。因本次检查点更新在前次 fetch 之后，必须再次 pull 获取最新记录。
+
+```bat
+git branch -m main
+git -c http.proxy=http://127.0.0.1:7897 pull --no-rebase --allow-unrelated-histories --no-edit origin main
+git -c http.proxy=http://127.0.0.1:7897 push -u origin main
+```
+
+每条成功后再执行下一条；如有 error、fatal 或 CONFLICT，停止并发输出。以上步骤尚未收到执行结果，源码远端备份未验证。等待推送期间助手不再修改远端，避免造成非快进拒绝；下次先核验推送结果与远端源码，再更新进度。
