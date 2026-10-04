@@ -1,6 +1,10 @@
 # vibe知识科普：项目续接记录
 
-更新时间：2026-10-04 21:02（北京时间）。检查点：CP-014。
+更新时间：2026-10-04 21:08（北京时间）。检查点：CP-015。
+
+## 最新状态（优先于下方历史记录）
+
+工程源码和续接记录已成功上传 GitHub 私有仓库 Traveller06/vibe-science，main 分支推送提交 84cbfd9。助手已从远端读回 package.json、src/Root.tsx 和本记录验证。Windows 工程路径不变，main 已跟踪 origin/main。当前恢复重点是 Remotion Studio 的 getRenderQueue 错误。以下早期“源码未上传”描述属于历史状态。
 
 ## 必须遵守的续接规则
 
@@ -170,3 +174,9 @@ git -c http.proxy=http://127.0.0.1:7897 push -u origin main
 ```
 
 每条成功后再执行下一条；如有 error、fatal 或 CONFLICT，停止并发输出。以上步骤尚未收到执行结果，源码远端备份未验证。等待推送期间助手不再修改远端，避免造成非快进拒绝；下次先核验推送结果与远端源码，再更新进度。
+
+## CP-015：源码 GitHub 备份已验证，恢复预览故障诊断
+
+用户截图确认合并成功并推送 82f1102..84cbfd9 main -> main，main 跟踪 origin/main，终端已返回提示符。助手独立读回远端 package.json、src/Root.tsx 和续接记录，确认源码已存在。package.json 的 Remotion 直接依赖均为4.0.531，源码仍为 HelloWorld 模板。尚未修复预览故障或制作正式视频。
+
+下一步在现有 CMD 工程目录执行 npx remotion studio --log=verbose，打开 http://localhost:3000 并刷新一次，提供终端底部完整错误堆栈。命令尚未收到结果，不盲目重装或升级。助手此次更新进度使远端领先本地一个文档提交；下一次本地提交/推送前需拉取最新进度。每次后续工作继续保存源码变更与检查点，备份不等于后台自动保存运行内存。
