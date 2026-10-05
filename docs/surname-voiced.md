@@ -32,3 +32,9 @@ npx remotion render src/index.ts SurnameEvolution out/surname-evolution-voiced-v
 若需要改变旁白，开发辅助脚本顺序为：generate-surname-voice.py、build-surname-soundtrack.py；依赖Python edge-tts/numpy与FFmpeg。音频原始分句缓存位于out/audio-work，属于可重建缓存，不是运行必要文件。改变文案时先清除对应的旧cue缓存再生成，重新审听专名读音与节奏。字体变更时按build-surname-font.py说明准备原字体及OFL，再生成子集。
 
 Remotion依赖保持4.0.530。原10项开发工具链high未因配音任务强制升级。当前是首版合成配音成片，用户可根据试听更换音色或调整语气。
+
+## 成片验证与交付检查点 CP-032
+
+导出完成：surname-evolution-voiced-v1.mp4，8,431,985字节，视频3720帧/124秒；MP4封装报告124.053秒（AAC尾部封装填充），H.264 1920×1080 30fps，AAC 48kHz双声道。FFmpeg整片解码无错误；音轨有信号，首尾画面与中文字体已检查。ESLint、TypeScript、22句完整性、实际测量音频时码和SRT检查全部通过。
+
+MP4已独立持久保存，文件ID：libfile_bf9c7338a0388191ab4bedc394110e88。视频不是Git跟踪文件；仓库包含完整音轨、字幕、字体及源码，可重新导出。音频源采用合成声音，本次未进行人工听审；音色、情绪与历史专名读音留待用户试听评估，不将自动编码/时码检查等同于真人听审。
