@@ -1,3 +1,10 @@
+import { SurnameEvolution } from "./SurnameEvolution";
+import { Opening } from "./SurnameEvolution/scenes/Opening";
+import { Branches } from "./SurnameEvolution/scenes/Branches";
+import { Convergence } from "./SurnameEvolution/scenes/Convergence";
+import { Reform } from "./SurnameEvolution/scenes/Reform";
+import { Migration } from "./SurnameEvolution/scenes/Migration";
+import { Closing } from "./SurnameEvolution/scenes/Closing";
 import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
@@ -8,6 +15,64 @@ import { Title } from "./HelloWorld/Title";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="SurnameEvolution"
+        component={SurnameEvolution}
+        durationInFrames={3600}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Folder name="SurnameScenes">
+        <Composition
+          id="SurnameOpening"
+          component={Opening}
+          durationInFrames={450}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SurnameBranches"
+          component={Branches}
+          durationInFrames={750}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SurnameConvergence"
+          component={Convergence}
+          durationInFrames={600}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SurnameReform"
+          component={Reform}
+          durationInFrames={750}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SurnameMigration"
+          component={Migration}
+          durationInFrames={690}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SurnameClosing"
+          component={Closing}
+          durationInFrames={360}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
       <Folder name="Elements">
         <Composition
           id="Logo"
@@ -50,7 +115,6 @@ export const RemotionRoot: React.FC = () => {
           titleColor: "#000000",
         }}
       />
-
     </>
   );
 };
