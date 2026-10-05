@@ -1,0 +1,196 @@
+{
+  "voice": "zh-CN-YunxiNeural",
+  "engine": "edge-tts",
+  "rate": "-8%",
+  "fps": 30,
+  "durationSeconds": 124.0,
+  "sceneBoundaries": [
+    0,
+    450,
+    1200,
+    1800,
+    2550,
+    3240,
+    3720
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "scene": 0,
+      "startFrame": 3,
+      "endFrame": 60,
+      "measuredSeconds": 1.872,
+      "text": "你姓什么？"
+    },
+    {
+      "index": 1,
+      "scene": 0,
+      "startFrame": 63,
+      "endFrame": 172,
+      "measuredSeconds": 3.624,
+      "text": "这个问题，你几乎不用思考。"
+    },
+    {
+      "index": 2,
+      "scene": 0,
+      "startFrame": 175,
+      "endFrame": 334,
+      "measuredSeconds": 5.28,
+      "text": "但如果再问一句：这个姓，为什么会来到你身上？"
+    },
+    {
+      "index": 3,
+      "scene": 0,
+      "startFrame": 337,
+      "endFrame": 445,
+      "measuredSeconds": 3.576,
+      "text": "答案，就要向历史深处寻找。"
+    },
+    {
+      "index": 4,
+      "scene": 1,
+      "startFrame": 469,
+      "endFrame": 580,
+      "measuredSeconds": 3.696,
+      "text": "今天，我们把“姓氏”连在一起说。"
+    },
+    {
+      "index": 5,
+      "scene": 1,
+      "startFrame": 599,
+      "endFrame": 783,
+      "measuredSeconds": 6.12,
+      "text": "可在先秦，尤其是周代贵族的称谓中，姓与氏并不相同。"
+    },
+    {
+      "index": 6,
+      "scene": 1,
+      "startFrame": 802,
+      "endFrame": 982,
+      "measuredSeconds": 5.976,
+      "text": "姓标示较大的血缘群体，氏则区分其中的宗族分支。"
+    },
+    {
+      "index": 7,
+      "scene": 1,
+      "startFrame": 1001,
+      "endFrame": 1179,
+      "measuredSeconds": 5.928,
+      "text": "可以把它想象成一棵树：同一树干，也会长出不同枝条。"
+    },
+    {
+      "index": 8,
+      "scene": 2,
+      "startFrame": 1250,
+      "endFrame": 1383,
+      "measuredSeconds": 4.416,
+      "text": "到秦汉时期，两者的区别逐渐淡化。"
+    },
+    {
+      "index": 9,
+      "scene": 2,
+      "startFrame": 1433,
+      "endFrame": 1569,
+      "measuredSeconds": 4.512,
+      "text": "“姓”与“氏”，慢慢合流成了我们熟悉的姓氏。"
+    },
+    {
+      "index": 10,
+      "scene": 2,
+      "startFrame": 1619,
+      "endFrame": 1750,
+      "measuredSeconds": 4.344,
+      "text": "称呼的变化背后，是社会秩序的变化。"
+    },
+    {
+      "index": 11,
+      "scene": 3,
+      "startFrame": 1836,
+      "endFrame": 1955,
+      "measuredSeconds": 3.936,
+      "text": "但这条历史线，并没有从此静止。"
+    },
+    {
+      "index": 12,
+      "scene": 3,
+      "startFrame": 1991,
+      "endFrame": 2149,
+      "measuredSeconds": 5.256,
+      "text": "北魏孝文帝改革时，皇室的拓跋氏改为元氏。"
+    },
+    {
+      "index": 13,
+      "scene": 3,
+      "startFrame": 2185,
+      "endFrame": 2359,
+      "measuredSeconds": 5.784,
+      "text": "一个姓的改变，也留下了制度变迁与文化交融的痕迹。"
+    },
+    {
+      "index": 14,
+      "scene": 3,
+      "startFrame": 2395,
+      "endFrame": 2516,
+      "measuredSeconds": 4.008,
+      "text": "姓氏不只被继承，也会被改写。"
+    },
+    {
+      "index": 15,
+      "scene": 4,
+      "startFrame": 2591,
+      "endFrame": 2748,
+      "measuredSeconds": 5.232,
+      "text": "人们又带着这些姓，离开故土，建立新的家园。"
+    },
+    {
+      "index": 16,
+      "scene": 4,
+      "startFrame": 2789,
+      "endFrame": 2984,
+      "measuredSeconds": 6.48,
+      "text": "地图上的距离越来越远，一个熟悉的字，却可能被一代代保留下来。"
+    },
+    {
+      "index": 17,
+      "scene": 4,
+      "startFrame": 3025,
+      "endFrame": 3199,
+      "measuredSeconds": 5.784,
+      "text": "它像一条线，连接着曾经的生活，也连接着今天的我们。"
+    },
+    {
+      "index": 18,
+      "scene": 5,
+      "startFrame": 3247,
+      "endFrame": 3358,
+      "measuredSeconds": 3.696,
+      "text": "所以，当你再次说出“我姓什么”，"
+    },
+    {
+      "index": 19,
+      "scene": 5,
+      "startFrame": 3365,
+      "endFrame": 3467,
+      "measuredSeconds": 3.384,
+      "text": "你说出的，是自己的身份，"
+    },
+    {
+      "index": 20,
+      "scene": 5,
+      "startFrame": 3474,
+      "endFrame": 3570,
+      "measuredSeconds": 3.192,
+      "text": "也是一个值得继续追问的问题："
+    },
+    {
+      "index": 21,
+      "scene": 5,
+      "startFrame": 3577,
+      "endFrame": 3712,
+      "measuredSeconds": 4.488,
+      "text": "在这个名字之前，发生过怎样的历史？"
+    }
+  ],
+  "music": "Original synthesized pentatonic ambient tones; no sampled music",
+  "peak": 0.7607829228891494
+}

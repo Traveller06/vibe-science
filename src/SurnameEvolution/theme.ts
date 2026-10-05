@@ -5,4 +5,4 @@ export const THEME = {
   muted: "#A6AAA9",
 };
 export const FONT_FAMILY =
-  '"Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';
+  '"Surname CJK", "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif';

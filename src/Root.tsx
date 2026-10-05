@@ -1,3 +1,4 @@
+import { FPS, SCENES, TOTAL_FRAMES } from "./SurnameEvolution/script";
 import { SurnameEvolution } from "./SurnameEvolution";
 import { Opening } from "./SurnameEvolution/scenes/Opening";
 import { Branches } from "./SurnameEvolution/scenes/Branches";
@@ -18,8 +19,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="SurnameEvolution"
         component={SurnameEvolution}
-        durationInFrames={3600}
-        fps={30}
+        durationInFrames={TOTAL_FRAMES}
+        fps={FPS}
         width={1920}
         height={1080}
       />
@@ -27,48 +28,48 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="SurnameOpening"
           component={Opening}
-          durationInFrames={450}
-          fps={30}
+          durationInFrames={SCENES[0].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />
         <Composition
           id="SurnameBranches"
           component={Branches}
-          durationInFrames={750}
-          fps={30}
+          durationInFrames={SCENES[1].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />
         <Composition
           id="SurnameConvergence"
           component={Convergence}
-          durationInFrames={600}
-          fps={30}
+          durationInFrames={SCENES[2].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />
         <Composition
           id="SurnameReform"
           component={Reform}
-          durationInFrames={750}
-          fps={30}
+          durationInFrames={SCENES[3].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />
         <Composition
           id="SurnameMigration"
           component={Migration}
-          durationInFrames={690}
-          fps={30}
+          durationInFrames={SCENES[4].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />
         <Composition
           id="SurnameClosing"
           component={Closing}
-          durationInFrames={360}
-          fps={30}
+          durationInFrames={SCENES[5].duration}
+          fps={FPS}
           width={1920}
           height={1080}
         />

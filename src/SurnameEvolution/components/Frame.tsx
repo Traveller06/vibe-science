@@ -1,3 +1,4 @@
+import { useSurnameFont } from "../fonts";
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { FONT_FAMILY, THEME } from "../theme";
@@ -11,6 +12,7 @@ export const Frame: React.FC<{
   label: string;
   children: React.ReactNode;
 }> = ({ chapter, label, children }) => {
+  useSurnameFont();
   const f = useCurrentFrame();
   return (
     <AbsoluteFill
@@ -77,7 +79,7 @@ export const Frame: React.FC<{
           color: "#a6aaa980",
         }}
       >
-        VIBE SCIENCE · 无配音视觉预览
+        VIBE SCIENCE · 有声版 · 合成旁白
       </div>
     </AbsoluteFill>
   );

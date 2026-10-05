@@ -7,10 +7,10 @@ import {
   FPS,
 } from "../src/SurnameEvolution/script.ts";
 assert.equal(FPS, 30);
-assert.equal(TOTAL_FRAMES, 3600);
+assert.equal(TOTAL_FRAMES, 3720);
 assert.deepEqual(
   [...SCENES.map((s: { start: number }) => s.start), TOTAL_FRAMES],
-  [0, 450, 1200, 1800, 2550, 3240, 3600],
+  [0, 450, 1200, 1800, 2550, 3240, 3720],
 );
 for (let i = 0; i < SCENES.length; i++)
   assert.equal(
@@ -41,4 +41,4 @@ assert.deepEqual(
   "All approved narration must be retained in order",
 );
 assert.equal(CAPTIONS.length, 22);
-console.log("PASS: 6 contiguous scenes, 22 approved caption cues, 3600 frames");
+console.log("PASS: 6 contiguous scenes, 22 approved caption cues, 3720 frames");
