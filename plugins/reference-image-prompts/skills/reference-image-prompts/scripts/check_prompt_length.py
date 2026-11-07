@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Count UTF-8 prompt body from file or stdin; fail if over limit."""
 import argparse
-from pathlib import Path
 import sys
 
 
@@ -13,9 +12,10 @@ def main():
     if args.limit < 1:
         parser.error('--limit must be positive')
     if args.path:
-        text = Path(args.path).read_text(encoding='utf-8')
+        with open(args.path, encoding='utf-8', newline='') as prompt_file:
+            text = prompt_file.read()
     else:
-        sys.stdin.reconfigure(encoding='utf-8', errors='strict')
+        sys.stdin.reconfigure(encoding='utf-8', errors='strict', newline='')
         text = sys.stdin.read()
     count = len(text)
     utf16 = len(text.encode('utf-16-le')) // 2
