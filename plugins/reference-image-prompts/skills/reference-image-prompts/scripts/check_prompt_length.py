@@ -12,7 +12,11 @@ def main():
     args = parser.parse_args()
     if args.limit < 1:
         parser.error('--limit must be positive')
-    text = Path(args.path).read_text(encoding='utf-8') if args.path else sys.stdin.read()
+    if args.path:
+        text = Path(args.path).read_text(encoding='utf-8')
+    else:
+        sys.stdin.reconfigure(encoding='utf-8', errors='strict')
+        text = sys.stdin.read()
     count = len(text)
     utf16 = len(text.encode('utf-16-le')) // 2
     passed = max(count, utf16) <= args.limit
